@@ -7,7 +7,7 @@ using Company_Abdelkader.DAL.Models;
 
 namespace Company_Abdelkader.BLL.Interfaces
 {
-    internal interface IDepartmentRepository
+    public interface IDepartmentRepository
     {
         IEnumerable<Department> GetAll();
         Department GetById(int id);

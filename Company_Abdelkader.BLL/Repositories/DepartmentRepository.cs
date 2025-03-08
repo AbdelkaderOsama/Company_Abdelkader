@@ -14,9 +14,10 @@ namespace Company_Abdelkader.BLL.Repositories
     {
         private readonly CompanyDbContext _context;
 
-        public DepartmentRepository()
+        //Ask clr to create the object 
+        public DepartmentRepository(CompanyDbContext context)
         {
-            _context = new CompanyDbContext();
+            _context = context;
         }
         public IEnumerable<Department> GetAll()
         {

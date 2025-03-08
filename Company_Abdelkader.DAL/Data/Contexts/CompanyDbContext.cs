@@ -12,7 +12,7 @@ namespace Company_Abdelkader.DAL.Data.Contexts
     public class CompanyDbContext : DbContext
     {
 
-        public CompanyDbContext () : base ()
+        public CompanyDbContext (DbContextOptions<CompanyDbContext> options) : base (options)
         {
 
         }
@@ -21,10 +21,10 @@ namespace Company_Abdelkader.DAL.Data.Contexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server = .; Database = Company_Abdelkader; Trusted_Connection = true;TrustServerCertificate = True");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    //optionsBuilder.UseSqlServer("Server = .; Database = Company_Abdelkader; Trusted_Connection = true;TrustServerCertificate = True");
+        //}
         public DbSet<Department> Departments { get; set; }
     }
 }
