@@ -53,6 +53,13 @@ namespace Company_Abdelkader.PL.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Details()
+        {
+
+            return View();
+        }
+
 
     }
 }
