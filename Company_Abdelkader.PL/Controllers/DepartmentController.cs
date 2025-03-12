@@ -54,8 +54,14 @@ namespace Company_Abdelkader.PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details()
+        public IActionResult Details(int? id)
+            
         {
+            if (id == null) return BadRequest("invalid id");
+
+            // var department =  _departmentRepository.GetById(id.Value);
+
+            //if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
 
             return View();
         }
