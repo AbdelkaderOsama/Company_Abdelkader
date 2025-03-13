@@ -54,7 +54,7 @@ namespace Company_Abdelkader.PL.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int? id)
+        public IActionResult Details(int? id, string ViewName = "Details")
             
         {
             if (id == null) return BadRequest("invalid id");
@@ -63,19 +63,19 @@ namespace Company_Abdelkader.PL.Controllers
 
             if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
 
-            return View(department);
+            return View(ViewName, department);
         }
 
         [HttpGet]
         public IActionResult Edit (int? id)
         {
-            if (id == null) return BadRequest("invalid id");
+            //if (id == null) return BadRequest("invalid id");
 
-            var department = _departmentRepository.GetById(id.Value);
+            //var department = _departmentRepository.GetById(id.Value);
 
-            if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
+            //if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
 
-            return View(department);
+            return Details(id, "Edit");
 
         }
 
@@ -103,13 +103,13 @@ namespace Company_Abdelkader.PL.Controllers
         [HttpGet]
         public IActionResult Delete(int? id)
         {
-            if (id == null) return BadRequest("invalid id");
+            //if (id == null) return BadRequest("invalid id");
 
-            var department = _departmentRepository.GetById(id.Value);
+            //var department = _departmentRepository.GetById(id.Value);
 
-            if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
+            //if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
 
-            return View(department);
+            return Details(id , "Delete");
 
         }
 
