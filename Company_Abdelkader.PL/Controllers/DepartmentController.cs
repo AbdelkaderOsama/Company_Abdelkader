@@ -80,6 +80,7 @@ namespace Company_Abdelkader.PL.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit([FromRoute]int id,Department department)
         {
 
@@ -94,6 +95,40 @@ namespace Company_Abdelkader.PL.Controllers
                 }
             }
             
+
+            return View(department);
+
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null) return BadRequest("invalid id");
+
+            var department = _departmentRepository.GetById(id.Value);
+
+            if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
+
+            return View(department);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete([FromRoute] int id, Department department)
+        {
+
+            if (ModelState.IsValid)
+            {
+                if (id != department.Id) return BadRequest();
+
+                var count = _departmentRepository.Delete(department);
+                if (count > 0)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
 
             return View(department);
 
