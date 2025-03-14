@@ -26,5 +26,6 @@ namespace Company_Abdelkader.DAL.Data.Contexts
         //    //optionsBuilder.UseSqlServer("Server = .; Database = Company_Abdelkader; Trusted_Connection = true;TrustServerCertificate = True");
         //}
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }
