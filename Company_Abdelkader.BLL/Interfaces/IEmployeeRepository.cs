@@ -7,14 +7,14 @@ using Company_Abdelkader.DAL.Models;
 
 namespace Company_Abdelkader.BLL.Interfaces
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository : IGenericRepository<Employee>
     {
-        IEnumerable<Employee> GetAll();
-        Employee GetById(int id);
+        //IEnumerable<Employee> GetAll();
+        //Employee GetById(int id);
 
-        int Add(Employee model);
-        int Update(Employee model);
-        int Delete(Employee model);
+        //int Add(Employee model);
+        //int Update(Employee model);
+        //int Delete(Employee model);
 
 
     }
