@@ -23,7 +23,7 @@ namespace Company_Abdelkader.DAL.Data.Migrations
                     salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    //Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     ISActive = table.Column<bool>(type: "bit", nullable: false),
                     HiringDate = table.Column<DateTime>(type: "datetime2", nullable: false),

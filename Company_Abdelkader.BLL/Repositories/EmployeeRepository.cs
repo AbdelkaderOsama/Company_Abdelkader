@@ -10,7 +10,7 @@ using Company_Abdelkader.DAL.Models;
 
 namespace Company_Abdelkader.BLL.Repositories
 {
-    internal class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         private readonly CompanyDbContext _context;
 
