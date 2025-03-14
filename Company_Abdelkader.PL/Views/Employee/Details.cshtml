@@ -1,0 +1,87 @@
+﻿@model Employee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details Employee</h1>
+
+<br />
+<br />
+
+<div>
+
+    <div class="my-3">
+        <label asp-for="Name" class="col-form-label"></label>
+        <input asp-for="Name" class="form-control" readonly />
+        
+    </div>
+
+    <div class="my-3">
+        <label asp-for="Address" class="col-form-label"></label>
+        <input asp-for="Address" class="form-control" readonly />
+      
+    </div>
+
+    <div class="my-3">
+        <label asp-for="age" class="col-form-label"></label>
+        <input asp-for="age" class="form-control" readonly />
+       
+    </div>
+
+    <div class="my-3">
+        <label asp-for="salary" class="col-form-label"></label>
+        <input asp-for="salary" class="form-control" readonly />
+        
+
+    </div>
+
+    <div class="my-3">
+        <label asp-for="Phone" class="col-form-label"></label>
+        <input asp-for="Phone" class="form-control" readonly />
+       
+    </div>
+
+    <div class="my-3">
+        <label asp-for="Email" class="col-form-label"></label>
+        <input asp-for="Email" class="form-control" readonly />
+       
+    </div>
+
+    <div class="my-3">
+        <label asp-for="ISActive" class="col-form-label"></label>
+        <input asp-for="ISActive" class="form-check" disabled />
+        <span asp-validation-for="ISActive"></span>
+    </div>
+
+    <div class="my-3">
+        <label asp-for="IsDeleted" class="col-form-label"></label>
+        <input asp-for="IsDeleted" class="form-check" disabled />
+       
+    </div>
+
+    <div class="my-3">
+        <label asp-for="HiringDate" class="col-form-label"></label>
+        <input asp-for="HiringDate" class="form-control" readonly />
+       
+    </div>
+
+    <div class="my-3">
+        <label asp-for="CreateAt" class="col-form-label"></label>
+        <input asp-for="CreateAt" class="form-control" readonly />
+        
+    </div>
+
+
+    
+
+    <div class="my-3">
+        
+        <a asp-action="Edit" class="btn btn-warning">Edit</a>
+        <a asp-action="index" class="btn btn-light">Back To List</a>
+
+    </div>
+
+</div>
+
+

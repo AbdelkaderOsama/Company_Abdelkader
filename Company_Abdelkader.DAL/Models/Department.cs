@@ -9,6 +9,7 @@ namespace Company_Abdelkader.DAL.Models
     public class Department  : BaseEntity
     {
   
+        public string Name { get; set; }    
 
         public int code { get; set; }
 

@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Company_Abdelkader.DAL.Models;
 
-namespace Company_Abdelkader.BLL.Interfaces
+namespace Company_Abdelkader.BLL.Interfaces;
+
+
+
+public interface IDepartmentRepository : IGenericRepository<Department>
 {
-    public interface IDepartmentRepository : IGenericRepository<Department>
-    {
-        //IEnumerable<Department> GetAll();
-        //Department GetById(int id);
+    //IEnumerable<Department> GetAll();
+    //Department GetById(int id);
 
-        //int Add(Department model);
-        //int Update(Department model);
-        //int Delete(Department model);
+    //int Add(Department model);
+    //int Update(Department model);
+    //int Delete(Department model);
 
-    }
 }

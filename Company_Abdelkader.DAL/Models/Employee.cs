@@ -9,6 +9,7 @@ namespace Company_Abdelkader.DAL.Models
 {
   public class Employee : BaseEntity
     {
+        public string Name { get; set; }
       
         public string Address { get; set; }
         public int age { get; set; }
@@ -18,7 +19,7 @@ namespace Company_Abdelkader.DAL.Models
 
         public string Email { get; set; }
 
-        public DateTime Date { get; set; }
+        
 
         public bool IsDeleted { get; set; }
 

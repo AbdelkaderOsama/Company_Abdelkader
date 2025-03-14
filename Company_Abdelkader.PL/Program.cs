@@ -16,6 +16,7 @@ namespace Company_Abdelkader.PL
             builder.Services.AddControllersWithViews(); //register built-in MVC
 
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();//Allow to DI for Department Repository
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();//Allow to DI for Employee Repository
 
             builder.Services.AddDbContext<CompanyDbContext>(options =>
             {
