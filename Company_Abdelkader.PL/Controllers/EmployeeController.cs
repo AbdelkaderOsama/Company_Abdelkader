@@ -1,4 +1,5 @@
 ﻿using Company_Abdelkader.BLL.Interfaces;
+using Company_Abdelkader.BLL.Repositories;
 using Company_Abdelkader.DAL.Models;
 using Company_Abdelkader.PL.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,12 @@ namespace Company_Abdelkader.PL.Controllers
     public class EmployeeController : Controller
     {
         private IEmployeeRepository _employeeRepository;
+        private IDepartmentRepository _DepartmentRepository;
 
-        public EmployeeController(IEmployeeRepository employeeRepository )
+        public EmployeeController(IEmployeeRepository employeeRepository, IDepartmentRepository departmentRepository )
         {
             _employeeRepository = employeeRepository;
+            _DepartmentRepository = departmentRepository;
         }
 
         [HttpGet] //Employee
@@ -21,12 +24,21 @@ namespace Company_Abdelkader.PL.Controllers
 
             var employees = _employeeRepository.GetAll();
 
+            //dictionary = 3 proberty
+            //1: ViewData
+
+            //ViewData["Message"] = "Hellow from ViewData";
+            //2: ViewBag
+            ViewBag.Message = "Hellow From ViewBag";
+
             return View(employees);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
+            var departments =  _DepartmentRepository.GetAll();
+            ViewData["departments"] = departments;
             return View();
         }
 
@@ -47,6 +59,7 @@ namespace Company_Abdelkader.PL.Controllers
                     ISActive = model.ISActive,
                     IsDeleted = model.IsDeleted,
                     HiringDate = model.HiringDate,
+                    DepartmentId = model.DepartmentId,
             
                     
                 };
