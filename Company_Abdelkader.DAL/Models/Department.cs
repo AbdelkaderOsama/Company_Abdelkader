@@ -14,5 +14,7 @@ namespace Company_Abdelkader.DAL.Models
         public int code { get; set; }
 
         public DateTime DateOfCreation { get; set; }
+
+        public List<Employee> Employees { get; set; }
     }
 }

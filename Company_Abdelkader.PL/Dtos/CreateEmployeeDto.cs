@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing.Printing;
 using Company_Abdelkader.DAL.Models;
 
@@ -32,5 +33,9 @@ namespace Company_Abdelkader.PL.Dtos
         public DateTime HiringDate { get; set; }
 
         public DateTime CreateAt { get; set; }
+
+        [DisplayName("Department")]
+        public int? DepartmentId { get; set; }
+        public Department Department { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,9 @@ namespace Company_Abdelkader.DAL.Models
         public DateTime HiringDate { get; set; }
 
         public DateTime CreateAt { get; set; }
+
+        public int? DepartmentId { get; set; }
+        public Department Department { get; set; }
 
 
     }
