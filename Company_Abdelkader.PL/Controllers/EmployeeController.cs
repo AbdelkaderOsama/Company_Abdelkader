@@ -3,18 +3,22 @@ using Company_Abdelkader.BLL.Repositories;
 using Company_Abdelkader.DAL.Models;
 using Company_Abdelkader.PL.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Company_Abdelkader.PL.Controllers
 {
     public class EmployeeController : Controller
     {
-        private IEmployeeRepository _employeeRepository;
-        private IDepartmentRepository _DepartmentRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public EmployeeController(IEmployeeRepository employeeRepository, IDepartmentRepository departmentRepository )
+        //private IEmployeeRepository _employeeRepository;
+        //private IDepartmentRepository _DepartmentRepository;
+
+        public EmployeeController(/*IEmployeeRepository employeeRepository, IDepartmentRepository departmentRepository*/ IUnitOfWork unitOfWork )
         {
-            _employeeRepository = employeeRepository;
-            _DepartmentRepository = departmentRepository;
+            _unitOfWork = unitOfWork;
+            //_employeeRepository = employeeRepository;
+            //_DepartmentRepository = departmentRepository;
         }
 
         [HttpGet] //Employee
@@ -22,7 +26,7 @@ namespace Company_Abdelkader.PL.Controllers
         {
 
 
-            var employees = _employeeRepository.GetAll();
+            var employees = _unitOfWork.employeeRepository.GetAll();
 
             //dictionary = 3 proberty
             //1: ViewData
@@ -36,8 +40,9 @@ namespace Company_Abdelkader.PL.Controllers
 
         [HttpGet]
         public IActionResult Create()
-        {
-            var departments =  _DepartmentRepository.GetAll();
+        { 
+
+            var departments =  _unitOfWork.departmentRepository.GetAll();
             ViewData["departments"] = departments;
             return View();
         }
@@ -63,7 +68,7 @@ namespace Company_Abdelkader.PL.Controllers
             
                     
                 };
-                var count = _employeeRepository.Add(employee);
+                var count = _unitOfWork.employeeRepository.Add(employee);
 
                 if (count > 0)
                 {
@@ -79,7 +84,7 @@ namespace Company_Abdelkader.PL.Controllers
         {
             if (id == null) return BadRequest("invalid id");
 
-            var employee = _employeeRepository.GetById(id.Value);
+            var employee = _unitOfWork.employeeRepository.GetById(id.Value);
 
             if (employee is null) return NotFound(new { statuscode = 404, message = $"employee id {id} is not found " });
 
@@ -108,7 +113,7 @@ namespace Company_Abdelkader.PL.Controllers
             {
                 if (id != employee.Id) return BadRequest();
 
-                var count = _employeeRepository.Update(employee);
+                var count = _unitOfWork.employeeRepository.Update(employee);
                 if (count > 0)
                 {
                     return RedirectToAction(nameof(Index));
@@ -142,7 +147,7 @@ namespace Company_Abdelkader.PL.Controllers
             {
                 if (id != employee.Id) return BadRequest();
 
-                var count = _employeeRepository.Delete(employee);
+                var count = _unitOfWork.employeeRepository.Delete(employee);
                 if (count > 0)
                 {
                     return RedirectToAction(nameof(Index));

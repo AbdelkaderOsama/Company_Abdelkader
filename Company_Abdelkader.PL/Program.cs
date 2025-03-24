@@ -1,3 +1,4 @@
+using Company_Abdelkader.BLL;
 using Company_Abdelkader.BLL.Interfaces;
 using Company_Abdelkader.BLL.Repositories;
 using Company_Abdelkader.DAL.Data.Contexts;
@@ -15,8 +16,12 @@ namespace Company_Abdelkader.PL
             // Add services to the container.
             builder.Services.AddControllersWithViews(); //register built-in MVC
 
-            builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();//Allow to DI for Department Repository
-            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();//Allow to DI for Employee Repository
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();//Allow to DI for Department Repository
+
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();//A*//*llow to DI for Employee Repository
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             builder.Services.AddDbContext<CompanyDbContext>(options =>
             {

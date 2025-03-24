@@ -48,10 +48,9 @@ namespace Company_Abdelkader.BLL.Repositories
             return _context.SaveChanges();
         }
 
-       
-
-       
-
-       
+        public List<Employee> GetByName(string name)
+        {
+           return _context.Employees.Where(E => E.Name.ToLower().Contains(name.ToLower())).ToList();
+        }
     }
 }
