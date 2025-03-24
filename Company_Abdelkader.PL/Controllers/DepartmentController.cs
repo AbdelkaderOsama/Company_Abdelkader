@@ -9,11 +9,13 @@ namespace Company_Abdelkader.PL.Controllers
     //mvc controller 
     public class DepartmentController : Controller
     {
-        private IDepartmentRepository _departmentRepository;
+        //private IDepartmentRepository _departmentRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DepartmentController(IDepartmentRepository departmentRepository)
+        public DepartmentController(/*IDepartmentRepository departmentRepository*/ IUnitOfWork unitOfWork)
         {
-            _departmentRepository = departmentRepository;
+            //_departmentRepository = departmentRepository;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet] // /Department/index
@@ -21,7 +23,7 @@ namespace Company_Abdelkader.PL.Controllers
         {
             
 
-            var departments = _departmentRepository.GetAll();
+            var departments = _unitOfWork.departmentRepository.GetAll();
 
             return View(departments);
         }
@@ -43,7 +45,7 @@ namespace Company_Abdelkader.PL.Controllers
                     code = model.code,
                     DateOfCreation = model.DateOfCreation
                 };
-                var count = _departmentRepository.Add(department);
+                var count = _unitOfWork.departmentRepository.Add(department);
                 
                 if(count > 0)
                 {
@@ -59,7 +61,7 @@ namespace Company_Abdelkader.PL.Controllers
         {
             if (id == null) return BadRequest("invalid id");
 
-            var department = _departmentRepository.GetById(id.Value);
+            var department = _unitOfWork.departmentRepository.GetById(id.Value);
 
             if (department is null) return NotFound(new { statuscode = 404, message = $"department with id {id} is not found " });
 
@@ -88,7 +90,7 @@ namespace Company_Abdelkader.PL.Controllers
             {
                 if(id  != department.Id) return BadRequest();
                
-                var count  = _departmentRepository.Update(department);
+                var count  = _unitOfWork.departmentRepository.Update(department);
                 if (count > 0)
                 {
                     return RedirectToAction(nameof(Index));
@@ -122,7 +124,7 @@ namespace Company_Abdelkader.PL.Controllers
             {
                 if (id != department.Id) return BadRequest();
 
-                var count = _departmentRepository.Delete(department);
+                var count = _unitOfWork.departmentRepository.Delete(department);
                 if (count > 0)
                 {
                     return RedirectToAction(nameof(Index));

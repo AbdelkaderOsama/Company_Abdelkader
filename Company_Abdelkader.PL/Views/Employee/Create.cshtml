@@ -4,11 +4,17 @@
     ViewData["Title"] = "Create";
 }
 
-@{
-    var departments = new SelectList(ViewData["departments"] as IEnumerable<Department>);
-}
+
 
 <h1>Create Employee </h1>
+
+@{
+    // var Departments = ViewData["departments"] as IEnumerable<Department> ?? Enumerable.Empty<Department>();
+    // var selectList = new SelectList(Departments, "Id", "Name");
+
+
+    var Departments = new SelectList(ViewData["departments"] as IEnumerable<Department> , "Id", "Name");
+}
 
 <br />
 <br />
@@ -80,7 +86,7 @@
 
     <div class="my-3">
         <label asp-for="DepartmentId" class="col-form-label"></label>
-        <select asp-for="DepartmentId" asp-items="departments" class=" form-control">
+        <select asp-for="DepartmentId" asp-items="Departments" class=" form-control">
             <option >--- Select Department ----</option>
 
         </select>
