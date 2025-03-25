@@ -2,6 +2,8 @@ using Company_Abdelkader.BLL;
 using Company_Abdelkader.BLL.Interfaces;
 using Company_Abdelkader.BLL.Repositories;
 using Company_Abdelkader.DAL.Data.Contexts;
+using Company_Abdelkader.DAL.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -21,6 +23,16 @@ namespace Company_Abdelkader.PL
             builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();//A*//*llow to DI for Employee Repository
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            builder.Services.AddIdentity<AppUser,IdentityRole>()
+                            .AddEntityFrameworkStores<CompanyDbContext>();
+
+            builder.Services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/Account/SignIn";
+
+            });
+
 
 
             builder.Services.AddDbContext<CompanyDbContext>(options =>
@@ -44,6 +56,9 @@ namespace Company_Abdelkader.PL
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             
 
